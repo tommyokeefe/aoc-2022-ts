@@ -1,7 +1,7 @@
 import { pipe } from 'ts-functional-pipe';
 
 import Puzzle from '../../types/AbstractPuzzle';
-import { maxReducer, totalReducer, toString, sortDesc } from '../../utils/helpers';
+import { maxReducer, totalReducer, sortDesc } from '../../utils/helpers';
 
 const parseInput = (input: string): number[][] => input
     .split('\n\n')
@@ -18,19 +18,19 @@ const topThreeAndTotal = (calories: number[]): number => calories
     .reduce(totalReducer);
 
 export default class ConcretePuzzle extends Puzzle {
-  public solveFirst(): string {
-    const getMaxCount = pipe(parseInput, totalCountPerGroup, maxCount, toString);
+  public solveFirst(): number {
+    const getMaxCount = pipe(parseInput, totalCountPerGroup, maxCount);
     return getMaxCount(this.input);
   }
-  public solveSecond(): string {
-    const getTopThreeTotal = pipe(parseInput, totalCountPerGroup, topThreeAndTotal, toString);
+  public solveSecond(): number {
+    const getTopThreeTotal = pipe(parseInput, totalCountPerGroup, topThreeAndTotal);
     return getTopThreeTotal(this.input);
   }
 
-  public getFirstExpectedResult(): string {
-    return '24000';
+  public getFirstExpectedResult(): number {
+    return 24000;
   }
-  public getSecondExpectedResult(): string {
-    return '45000';
+  public getSecondExpectedResult(): number {
+    return 45000;
   }
 }
